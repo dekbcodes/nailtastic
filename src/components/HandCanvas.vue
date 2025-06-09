@@ -207,18 +207,18 @@ const resetZoom = () => {
 const getNailStyle = (hand, index, nail) => {
   // Nail positions for emoji hands
   const leftPositions = [
-    { top: '52%', left: '72%' },   // thumb
-    { top: '10%', left: '68%' },   // index
-    { top: '5%', left: '50%' },    // middle
-    { top: '10%', left: '32%' },   // ring
+    { top: '48%', left: '85%' },   // thumb (moved up slightly)
+    { top: '10%', left: '59%' },   // index (moved in more)
+    { top: '5%', left: '45%' },    // middle (moved in more)
+    { top: '10%', left: '32%' },   // ring (moved toward pinky)
     { top: '22%', left: '18%' }    // pinky
   ]
   
   const rightPositions = [
-    { top: '52%', left: '28%' },   // thumb
-    { top: '10%', left: '32%' },   // index
-    { top: '5%', left: '50%' },    // middle
-    { top: '10%', left: '68%' },   // ring
+    { top: '48%', left: '15%' },   // thumb (moved up slightly)
+    { top: '10%', left: '41%' },   // index (moved in more)
+    { top: '5%', left: '55%' },    // middle (moved in more)
+    { top: '10%', left: '68%' },   // ring (moved toward pinky)
     { top: '22%', left: '82%' }    // pinky
   ]
   
