@@ -64,6 +64,15 @@
           </v-card-subtitle>
 
           <v-card-actions class="pa-2">
+            <v-btn 
+              size="small" 
+              color="error" 
+              variant="text"
+              @click.stop="deleteDesign(design.id)"
+            >
+              <v-icon size="small">mdi-delete</v-icon>
+              Delete
+            </v-btn>
             <v-spacer></v-spacer>
             <v-btn 
               size="small" 
@@ -91,6 +100,12 @@ const archive = computed(() => nailStore.archive)
 
 const copyDesign = (designId) => {
   nailStore.copyFromArchive(designId)
+}
+
+const deleteDesign = (designId) => {
+  if (confirm('Are you sure you want to delete this design? This action cannot be undone.')) {
+    nailStore.deleteFromArchive(designId)
+  }
 }
 
 const formatDate = (timestamp) => {

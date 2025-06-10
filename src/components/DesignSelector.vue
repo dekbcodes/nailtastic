@@ -174,6 +174,21 @@
       </div>
     </v-card>
 
+    <!-- Delete Pattern Button -->
+    <v-card v-if="selectedCategory === 'patterns'" class="mt-4 pa-3">
+      <v-btn 
+        @click="deletePattern" 
+        color="error" 
+        variant="outlined" 
+        size="small" 
+        class="w-100"
+        :disabled="!selectedDesign"
+      >
+        <v-icon class="mr-1">mdi-delete</v-icon>
+        Delete Pattern
+      </v-btn>
+    </v-card>
+
     <!-- Decoration Color Picker -->
     <v-card v-if="selectedCategory === 'decorations' && selectedDesign" class="mt-4 pa-3">
       <v-card-title class="text-subtitle-1">Decoration Color</v-card-title>
@@ -263,6 +278,11 @@ const getDecorationIcon = (type) => {
     studs: 'mdi-circle-outline'
   }
   return icons[type] || 'mdi-circle'
+}
+
+const deletePattern = () => {
+  nailStore.removeAllPatterns()
+  nailStore.selectedDesign = null
 }
 
 const getDecorationColor = (decoration) => {

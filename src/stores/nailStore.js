@@ -25,6 +25,22 @@ export const useNailStore = defineStore('nail', () => {
   // Archive of saved designs
   const archive = ref([])
   
+  // Load archive from localStorage on store initialization
+  const loadArchive = () => {
+    const saved = localStorage.getItem('nailtastic-archive')
+    if (saved) {
+      try {
+        archive.value = JSON.parse(saved)
+      } catch (e) {
+        console.error('Error loading archive:', e)
+        archive.value = []
+      }
+    }
+  }
+  
+  // Initialize archive on store creation
+  loadArchive()
+  
   // Design categories
   const designCategories = computed(() => ({
     colors: {
@@ -148,6 +164,27 @@ export const useNailStore = defineStore('nail', () => {
     }
   }
   
+  // Remove patterns from all nails
+  const removeAllPatterns = (canvasId = null) => {
+    const targetCanvasId = canvasId || activeCanvasId.value
+    if (!canvases.value[targetCanvasId]) {
+      addCanvas(targetCanvasId)
+      return
+    }
+    
+    // Remove patterns from left hand
+    canvases.value[targetCanvasId].leftHand.forEach(nail => {
+      nail.pattern = null
+      nail.patternColor = null
+    })
+    
+    // Remove patterns from right hand
+    canvases.value[targetCanvasId].rightHand.forEach(nail => {
+      nail.pattern = null
+      nail.patternColor = null
+    })
+  }
+  
   // Save current design to archive
   const saveToArchive = (canvasId = null) => {
     const targetCanvasId = canvasId || activeCanvasId.value
@@ -166,13 +203,6 @@ export const useNailStore = defineStore('nail', () => {
     localStorage.setItem('nailtastic-archive', JSON.stringify(archive.value))
   }
   
-  // Load archive from localStorage
-  const loadArchive = () => {
-    const saved = localStorage.getItem('nailtastic-archive')
-    if (saved) {
-      archive.value = JSON.parse(saved)
-    }
-  }
   
   // Copy design from archive
   const copyFromArchive = (designId, canvasId = null) => {
@@ -185,6 +215,23 @@ export const useNailStore = defineStore('nail', () => {
       }
       canvases.value[targetCanvasId].leftHand = JSON.parse(JSON.stringify(design.leftHand))
       canvases.value[targetCanvasId].rightHand = JSON.parse(JSON.stringify(design.rightHand))
+    }
+  }
+
+  // Delete design from archive
+  const deleteFromArchive = (designId) => {
+    console.log('Attempting to delete design with ID:', designId)
+    console.log('Current archive:', archive.value)
+    
+    const index = archive.value.findIndex(d => d.id === designId)
+    console.log('Found index:', index)
+    
+    if (index !== -1) {
+      archive.value.splice(index, 1)
+      localStorage.setItem('nailtastic-archive', JSON.stringify(archive.value))
+      console.log('Design deleted, new archive:', archive.value)
+    } else {
+      console.log('Design not found!')
     }
   }
   
@@ -205,8 +252,10 @@ export const useNailStore = defineStore('nail', () => {
     applyToAll,
     applyToHand,
     resetHands,
+    removeAllPatterns,
     saveToArchive,
     loadArchive,
-    copyFromArchive
+    copyFromArchive,
+    deleteFromArchive
   }
 })

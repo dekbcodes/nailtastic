@@ -174,7 +174,7 @@ const skinTones = [
   { name: 'Fair', color: '#f8d7c4', filter: 'brightness(1.1) saturate(0.9) hue-rotate(-5deg)' },
   { name: 'Medium', color: '#f4c2a1', filter: 'brightness(1.0) saturate(1.0)' },
   { name: 'Tan', color: '#d4a574', filter: 'brightness(0.9) saturate(1.1) hue-rotate(5deg)' },
-  { name: 'Brown', color: '#a67c52', filter: 'brightness(0.7) saturate(1.2) hue-rotate(-5deg)' },
+  { name: 'Brown', color: '#a67c52', filter: 'brightness(0.7) saturate(0.8) hue-rotate(-25deg) sepia(0.4)' },
   { name: 'Dark', color: '#7c5a41', filter: 'brightness(0.5) saturate(1.1) hue-rotate(-15deg) sepia(0.3)' }
 ]
 
@@ -226,9 +226,11 @@ const getNailStyle = (hand, index, nail) => {
   const baseColor = nail.baseColor || '#ffc0cb'
   
   let background = baseColor
+  console.log('Nail data:', nail, 'Base color:', baseColor)
   if (nail.pattern) {
     const patternColorToUse = nail.patternColor || '#ffffff'
-    // Add pattern logic here (same as before)
+    console.log('Applying pattern:', nail.pattern, 'with colors:', baseColor, patternColorToUse)
+    
     switch (nail.pattern) {
       case 'vertical':
         background = `repeating-linear-gradient(90deg, ${baseColor}, ${baseColor} 2px, ${patternColorToUse} 2px, ${patternColorToUse} 4px)`
@@ -237,15 +239,57 @@ const getNailStyle = (hand, index, nail) => {
         background = `repeating-linear-gradient(0deg, ${baseColor}, ${baseColor} 2px, ${patternColorToUse} 2px, ${patternColorToUse} 4px)`
         break
       case 'diagonal':
-        background = `repeating-linear-gradient(45deg, ${baseColor}, ${baseColor} 3px, ${patternColorToUse} 3px, ${patternColorToUse} 6px)`
+        background = `repeating-linear-gradient(45deg, ${baseColor}, ${baseColor} 2px, ${patternColorToUse} 2px, ${patternColorToUse} 4px)`
         break
       case 'polka':
-        background = `radial-gradient(circle at 25% 25%, ${patternColorToUse} 2px, transparent 2px), radial-gradient(circle at 75% 75%, ${patternColorToUse} 2px, transparent 2px), ${baseColor}`
+        background = `radial-gradient(circle at 30% 30%, ${patternColorToUse} 1px, transparent 1.5px), radial-gradient(circle at 70% 70%, ${patternColorToUse} 1px, transparent 1.5px), ${baseColor}`
+        break
+      case 'confetti':
+        background = `linear-gradient(45deg, ${baseColor} 25%, ${patternColorToUse} 25% 50%, ${baseColor} 50% 75%, ${patternColorToUse} 75%)`
+        break
+      case 'gradient-dots':
+        background = `radial-gradient(circle 2px at 30% 30%, ${patternColorToUse} 30%, transparent 70%), radial-gradient(circle 2px at 70% 70%, ${patternColorToUse} 30%, transparent 70%), ${baseColor}`
+        break
+      case 'roses':
+        background = `radial-gradient(circle 2px at 25% 25%, ${patternColorToUse} 40%, transparent 60%), radial-gradient(circle 2px at 75% 75%, ${patternColorToUse} 40%, transparent 60%), ${baseColor}`
+        break
+      case 'daisies':
+        background = `radial-gradient(circle 1.5px at 30% 40%, ${patternColorToUse} 50%, transparent 50%), radial-gradient(circle 1.5px at 70% 60%, ${patternColorToUse} 50%, transparent 50%), ${baseColor}`
+        break
+      case 'cherry-blossoms':
+        background = `radial-gradient(circle 1px at 20% 30%, ${patternColorToUse} 60%, transparent 60%), radial-gradient(circle 1px at 60% 60%, ${patternColorToUse} 60%, transparent 60%), radial-gradient(circle 1px at 80% 20%, ${patternColorToUse} 60%, transparent 60%), ${baseColor}`
+        break
+      case 'abstract-flowers':
+        background = `radial-gradient(ellipse 3px 2px at 30% 40%, ${patternColorToUse} 50%, transparent 50%), radial-gradient(ellipse 2px 3px at 70% 60%, ${patternColorToUse} 50%, transparent 50%), ${baseColor}`
+        break
+      case 'scatter':
+        background = `radial-gradient(circle 0.5px at 15% 20%, ${patternColorToUse} 70%, transparent 70%), radial-gradient(circle 0.5px at 45% 60%, ${patternColorToUse} 70%, transparent 70%), radial-gradient(circle 0.5px at 75% 30%, ${patternColorToUse} 70%, transparent 70%), radial-gradient(circle 0.5px at 85% 80%, ${patternColorToUse} 70%, transparent 70%), ${baseColor}`
+        break
+      case 'swirls':
+        background = `repeating-conic-gradient(from 0deg at 50% 50%, ${baseColor} 0deg 45deg, ${patternColorToUse} 45deg 90deg, ${baseColor} 90deg 135deg, ${patternColorToUse} 135deg 180deg)`
+        break
+      case 'petals':
+        background = `radial-gradient(ellipse 4px 2px at 50% 30%, ${patternColorToUse} 50%, transparent 50%), radial-gradient(ellipse 2px 4px at 30% 50%, ${patternColorToUse} 50%, transparent 50%), radial-gradient(ellipse 4px 2px at 50% 70%, ${patternColorToUse} 50%, transparent 50%), radial-gradient(ellipse 2px 4px at 70% 50%, ${patternColorToUse} 50%, transparent 50%), ${baseColor}`
+        break
+      case 'abstract':
+        background = `linear-gradient(45deg, ${baseColor} 25%, ${patternColorToUse} 25% 50%, ${baseColor} 50% 75%, ${patternColorToUse} 75%)`
+        break
+      case 'crossing-lines':
+        background = `repeating-linear-gradient(45deg, ${baseColor} 0px 2px, ${patternColorToUse} 2px 4px), repeating-linear-gradient(-45deg, transparent 0px 2px, ${patternColorToUse} 2px 4px)`
+        break
+      case 'four-ovals':
+        background = `radial-gradient(ellipse 3px 2px at 30% 30%, ${patternColorToUse} 60%, transparent 60%), radial-gradient(ellipse 3px 2px at 70% 30%, ${patternColorToUse} 60%, transparent 60%), radial-gradient(ellipse 3px 2px at 30% 70%, ${patternColorToUse} 60%, transparent 60%), radial-gradient(ellipse 3px 2px at 70% 70%, ${patternColorToUse} 60%, transparent 60%), ${baseColor}`
+        break
+      case 'eight-petals':
+        background = `repeating-conic-gradient(from 0deg at 50% 50%, ${patternColorToUse} 0deg 22.5deg, ${baseColor} 22.5deg 45deg)`
         break
       default:
-        background = `linear-gradient(45deg, ${baseColor} 50%, ${patternColorToUse} 50%)`
+        // If pattern doesn't match any case, just use base color (no pattern)
+        background = baseColor
     }
   }
+  
+  console.log('Final background:', background)
   
   return {
     position: 'absolute',
@@ -282,8 +326,16 @@ const getDecorationColor = (decoration) => {
 }
 
 const onNailClick = (hand, index) => {
+  console.log('Nail clicked!', hand, index)
+  console.log('Store state:', {
+    selectedDesign: nailStore.selectedDesign,
+    selectedCategory: nailStore.selectedCategory
+  })
   if (nailStore.selectedDesign && nailStore.selectedCategory) {
+    console.log('Applying design to nail...')
     nailStore.applyToNail(hand, index, nailStore.selectedCategory, nailStore.selectedDesign, props.canvasId)
+  } else {
+    console.log('No design or category selected!')
   }
 }
 
