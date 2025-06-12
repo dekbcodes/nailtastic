@@ -251,19 +251,19 @@ const getNailStyle = (hand, index, nail) => {
         background = `radial-gradient(circle 2px at 30% 30%, ${patternColorToUse} 30%, transparent 70%), radial-gradient(circle 2px at 70% 70%, ${patternColorToUse} 30%, transparent 70%), ${baseColor}`
         break
       case 'roses':
-        background = `radial-gradient(circle 2px at 25% 25%, ${patternColorToUse} 40%, transparent 60%), radial-gradient(circle 2px at 75% 75%, ${patternColorToUse} 40%, transparent 60%), ${baseColor}`
+        background = `${baseColor}, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='26'%3E%3Ctext x='5' y='13' font-size='8'%3E🌹%3C/text%3E%3Ctext x='12' y='20' font-size='6'%3E🌹%3C/text%3E%3C/svg%3E")`
         break
       case 'daisies':
-        background = `radial-gradient(circle 1.5px at 30% 40%, ${patternColorToUse} 50%, transparent 50%), radial-gradient(circle 1.5px at 70% 60%, ${patternColorToUse} 50%, transparent 50%), ${baseColor}`
+        background = `${baseColor}, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='26'%3E%3Ctext x='4' y='12' font-size='7'%3E🌼%3C/text%3E%3Ctext x='11' y='20' font-size='6'%3E🌼%3C/text%3E%3C/svg%3E")`
         break
       case 'cherry-blossoms':
-        background = `radial-gradient(circle 1px at 20% 30%, ${patternColorToUse} 60%, transparent 60%), radial-gradient(circle 1px at 60% 60%, ${patternColorToUse} 60%, transparent 60%), radial-gradient(circle 1px at 80% 20%, ${patternColorToUse} 60%, transparent 60%), ${baseColor}`
+        background = `${baseColor}, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='26'%3E%3Ctext x='3' y='10' font-size='6'%3E🌸%3C/text%3E%3Ctext x='10' y='18' font-size='5'%3E🌸%3C/text%3E%3Ctext x='14' y='8' font-size='5'%3E🌸%3C/text%3E%3C/svg%3E")`
         break
       case 'abstract-flowers':
-        background = `radial-gradient(ellipse 3px 2px at 30% 40%, ${patternColorToUse} 50%, transparent 50%), radial-gradient(ellipse 2px 3px at 70% 60%, ${patternColorToUse} 50%, transparent 50%), ${baseColor}`
+        background = `${baseColor}, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='26'%3E%3Ctext x='4' y='12' font-size='7'%3E🌺%3C/text%3E%3Ctext x='11' y='20' font-size='6'%3E🌻%3C/text%3E%3C/svg%3E")`
         break
       case 'scatter':
-        background = `radial-gradient(circle 0.5px at 15% 20%, ${patternColorToUse} 70%, transparent 70%), radial-gradient(circle 0.5px at 45% 60%, ${patternColorToUse} 70%, transparent 70%), radial-gradient(circle 0.5px at 75% 30%, ${patternColorToUse} 70%, transparent 70%), radial-gradient(circle 0.5px at 85% 80%, ${patternColorToUse} 70%, transparent 70%), ${baseColor}`
+        background = `${baseColor}, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='26'%3E%3Ctext x='2' y='8' font-size='4'%3E🌿%3C/text%3E%3Ctext x='8' y='15' font-size='4'%3E🍃%3C/text%3E%3Ctext x='13' y='10' font-size='4'%3E🌿%3C/text%3E%3Ctext x='15' y='20' font-size='4'%3E🍃%3C/text%3E%3C/svg%3E")`
         break
       case 'swirls':
         background = `repeating-conic-gradient(from 0deg at 50% 50%, ${baseColor} 0deg 45deg, ${patternColorToUse} 45deg 90deg, ${baseColor} 90deg 135deg, ${patternColorToUse} 135deg 180deg)`
